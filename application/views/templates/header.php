@@ -27,10 +27,16 @@
     <li class="nav-item">
       <a class="nav-link text-white" href="<?php echo base_url(); ?>posts">Posts Blog</a>
     </li>
+    <li class="nav-item">
+      <a class="nav-link text-white" href="<?php echo base_url(); ?>categories">Categories</a>
+    </li>
   </ul>
   <ul class="navbar-nav">
 	<li class="nav-item">
 		<a class="nav-link text-white" href="<?php echo base_url(); ?>posts/create">Create Blog</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link text-white" href="<?php echo base_url(); ?>categories/create">Create Category</a>
 	</li>
 	<li class="nav-item">
 		<a class="nav-link btn btn-primary btn-sm text-white mr-2" href="">

@@ -1,8 +1,12 @@
-<?php echo validation_errors(); ?>
-<script src="https://cdn.ckeditor.com/ckeditor5/19.0.0/classic/ckeditor.js"></script>
 <section class="jumbotron py-2">
    <h2 class="text-center pb-2 text-primary font-weight-bold">Update Single Post Blog Page</h2>
    <div class="container col-md-10 p-4 text-dark font-weight-bold">
+   	  <div class="alert alert-danger" role="alert">
+  		 <span class="p-2 m-auto">
+  		 	<button type="button" class="close" data-dismiss="alert">x</button>
+  		 	<?php echo validation_errors(); ?>
+  		 </span>
+	  </div>
       <?php echo form_open('posts/update/'.$post['id']); ?>
 
 		  <div class="form-group">

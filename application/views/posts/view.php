@@ -2,7 +2,8 @@
    <h2 class="text-center pb-2 text-primary font-weight-bold">View Single Post Blog Page</h2>
    <div class="container col-md-8 text-dark border p-2 m-auto">
 		<h4 class="text-danger p-2 font-weight-bold"> <?php echo $post['title']; ?> </h2>
-		<img class="card-img-top" src="https://diy.sndimg.com/content/dam/images/diy/fullset/2013/3/6/0/CI-Architectural_Gardens_gravel-stone-pathway_s4x3.jpg.rend.hgtvcom.966.725.suffix/1420853602652.jpeg" alt="Card image cap">
+		<img class="card-img-top" src="<?php echo base_url(); ?>assets/images/posts/<?php echo $post['post_image']; ?>"
+			alt="post_image" style="max_width=500;max_height=500;">
 		<small class="text-primary font-weight-bold m-auto"> Posted on : <?php echo $post['created_at']; ?>
 		in <strong class="text-danger"><?php echo $categories['category_name']; ?></strong>
 		</small>

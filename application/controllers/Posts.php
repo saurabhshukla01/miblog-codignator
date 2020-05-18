@@ -31,8 +31,10 @@
 
 			$data['categories'] = $this->Post_model->get_categories();
 
-			$this->form_validation->set_rules('title','Title','required');
-			$this->form_validation->set_rules('body','Body','required');
+			$this->form_validation->set_rules('title','Title Post','required');
+			$this->form_validation->set_rules('body','Body Post','required');
+			$this->form_validation->set_rules('category_id','Select Category','required');
+			$this->form_validation->set_rules('userfile','Upload Image','required');
 
 			if($this->form_validation->run() === FALSE){
 				$this->load->view('templates/header');
@@ -40,7 +42,23 @@
 				$this->load->view('templates/footer');
 			}
 			else{
-				$this->Post_model->create_post();
+				// Upload Image
+				$config['upload_path'] = './assets/images/posts';
+				$config['allowed_types'] = 'gif|jpg|png|jpeg';
+				$config['max_size'] = '2048';
+				$config['max_width'] = '1000';
+				$config['max_height'] = '800';
+
+				$this->load->library('upload', $config);
+
+				if(!$this->upload->do_upload()){
+					$errors = array('error' => $this->upload->display_errors());
+					$post_image = '';
+				} else {
+					$data = array('upload_data' => $this->upload->data());
+					$post_image = $_FILES['userfile']['name'];
+				}
+				$this->Post_model->create_post($post_image);
 				redirect('posts');
 			}
 		}
