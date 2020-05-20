@@ -30,11 +30,11 @@
                   <div class="col-sm-4">
                      <div class="footer-links">
                         <h4>Useful Links</h4>
-                        <ul type="none">
+                           <ul>
                            <li><a href="<?php echo base_url(); ?>">Home</a></li>
                            <li><a href="<?php echo base_url(); ?>about">About us</a></li>
                            <li><a href="<?php echo base_url(); ?>privacy">Privacy policy</a></li>
-                        </ul>
+                           </ul>
                      </div>
                   </div>
                   <div class="col-sm-4">

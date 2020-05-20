@@ -8,6 +8,7 @@
 		in <strong class="text-danger"><?php echo $categories['category_name']; ?></strong>
 		</small>
 		<p><?php echo $post['body']; ?></p>
+		<?php if($this->session->userdata('user_id') == $post['user_id']): ?>
    	    <hr>
    	    <div class="d-flex">
 			<a class="btn btn-primary btn-sm p-2 m-2 pull-left" href="edit/<?php echo $post['slug']; ?>">Update</a>
@@ -15,6 +16,7 @@
 				<button type="submit" class="btn btn-danger btn-sm p-2 m-2 pull-right">Delete</button>
 			</form>
 		</div>
+		<?php endif; ?>
 		<hr>
 		<div class="pb-4 mt-4">
 			<h3>Comments</h3>

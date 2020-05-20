@@ -199,4 +199,10 @@ p{
 
   /* Back to Top button Css */
 
+/* Footer css */
 
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}

@@ -1,6 +1,6 @@
 <section class="jumbotron py-5">
    <h2 class="text-center pb-2 text-primary font-weight-bold">Sing In</h2>
-   <div class="container col-md-8 p-4  text-dark font-weight-bold">
+   <div class="container col-md-6 p-4  text-dark font-weight-bold">
    	  <div class="alert alert-danger" role="alert">
   		 <span class="p-2 m-auto">
   		 	<button type="button" class="close" data-dismiss="alert">x</button>

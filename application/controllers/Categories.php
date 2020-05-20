@@ -49,7 +49,7 @@
 				redirect('users/login');
 			}
 
-			$this->category_model->delete_category($category_id);
+			$this->Category_model->delete_category($category_id);
 
 			// Set message
 			$this->session->set_flashdata('category_deleted', 'Your category has been deleted');

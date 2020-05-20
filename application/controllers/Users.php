@@ -29,6 +29,7 @@
 
 		// Log in user
 		public function login(){
+
 			$data['title'] = 'Sign In';
 
 			$this->form_validation->set_rules('username', 'Username', 'required');
@@ -66,7 +67,7 @@
 					// Set message
 					$this->session->set_flashdata('login_failed', 'Login is invalid');
 
-					redirect('users/login');
+					redirect('users','refresh');
 				}
 			}
 		}
@@ -74,14 +75,16 @@
 		// Log user out
 		public function logout(){
 			// Unset user data
+			$base_url = base_url();
 			$this->session->unset_userdata('logged_in');
 			$this->session->unset_userdata('user_id');
 			$this->session->unset_userdata('username');
 
 			// Set message
 			$this->session->set_flashdata('user_loggedout', 'You are now logged out');
-
-			redirect('users/login');
+			//echo base_url();
+			//die();
+			redirect($base_url.'users/login');
 		}
 
 
