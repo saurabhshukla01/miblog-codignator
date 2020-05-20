@@ -9,6 +9,12 @@
 			$this->load->view('templates/footer');
 		}
 		public function Create(){
+
+			// Check login
+			if(!$this->session->userdata('logged_in')){
+				redirect('users/login');
+			}
+
 			$data['title'] = 'Create Category';
 
 			$this->form_validation->set_rules('category_name','Category Name','required');
@@ -20,6 +26,10 @@
 			}
 			else{
 				$this->Category_model->create_category();
+
+				// Set message
+				$this->session->set_flashdata('category_created', 'Your category has been created');
+
 				redirect('categories');
 			}
 		}
@@ -32,5 +42,18 @@
 			$this->load->view('posts/index' , $data);
 			$this->load->view('templates/footer');
 
+		}
+		public function delete($category_id){
+			// Check login
+			if(!$this->session->userdata('logged_in')){
+				redirect('users/login');
+			}
+
+			$this->category_model->delete_category($category_id);
+
+			// Set message
+			$this->session->set_flashdata('category_deleted', 'Your category has been deleted');
+
+			redirect('categories');
 		}
 	}

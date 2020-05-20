@@ -1,4 +1,4 @@
-<div class="album py-2 bg-light">
+<div class="album py-2">
    <div class="container p-0">
    		<h2 class="text-center pb-2 text-primary font-weight-bold"> Posts Blog Pages </h2>
       	<?php foreach($posts as $post) : ?>
@@ -20,5 +20,10 @@
 				</div>
 			 </div>
          <?php endforeach; ?>
+         <div class="mb-4 pb-4">
+			 <div class="row pagination-links list-pagination float-right d-flex">
+					<?php echo $this->pagination->create_links(); ?>
+			 </div>
+	     </div>
     </div>
 </div>

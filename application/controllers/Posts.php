@@ -1,10 +1,20 @@
 <?php
 	class Posts extends CI_Controller{
-		public function index()
+		public function index($offset = 0)
 		{
+
+			// Pagination Config
+			$config['base_url'] = base_url() . 'posts/index';
+			$config['total_rows'] = $this->db->count_all('posts');
+			$config['per_page'] = 4;
+			$config['uri_segment'] = 3;
+			$config['attributes'] = array('class' => 'pagination-link');
+
+			// Init Pagination
+			$this->pagination->initialize($config);
 			$data['title'] = "Latest Post Blog";
 
-			$data['posts'] = $this->Post_model->get_posts();
+			$data['posts'] = $this->Post_model->get_posts(FALSE, $config['per_page'], $offset);
 
 			$this->load->view('templates/header');
 			$this->load->view('posts/index' , $data);
@@ -13,6 +23,9 @@
 		}
 		public function view($slug = NULL){
 			$data['post'] = $this->Post_model->get_posts($slug);
+			$post_id = $data['post']['id'];
+			$data['comments']= $this->Comment_model->get_comments($post_id);
+			 
 			$data['categories'] = $this->Post_model->get_posts($slug);
 
 			if(empty($data['post'])){
@@ -59,6 +72,10 @@
 					$post_image = $_FILES['userfile']['name'];
 				}
 				$this->Post_model->create_post($post_image);
+
+				// Set message
+				$this->session->set_flashdata('post_created', 'Your post has been created');
+
 				redirect('posts');
 			}
 		}
@@ -67,7 +84,20 @@
 			redirect('posts');
 		}
 		public function edit($slug){
+
+			// Check login
+			if(!$this->session->userdata('logged_in')){
+				redirect('users/login');
+			}
+
 			$data['post'] = $this->Post_model->get_posts($slug);
+
+			// Check user
+			if($this->session->userdata('user_id') != $this->post_model->get_posts($slug)['user_id']){
+				redirect('posts');
+
+			}
+
 			$data['categories'] = $this->Post_model->get_categories();
 
 			if(empty($data['post'])){
@@ -82,7 +112,15 @@
 			$this->load->view('templates/footer');
 		}
 		public function update($id){
+			// Check login
+			if(!$this->session->userdata('logged_in')){
+				redirect('users/login');
+			}
+
 			$this->Post_model->update_post($id);
+
+			// Set message
+			$this->session->set_flashdata('post_updated', 'Your post has been updated');
 			redirect('posts');
 		}
 
